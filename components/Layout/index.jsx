@@ -1,4 +1,6 @@
 import { gql } from '@apollo/client';
+import { dom } from '@fortawesome/fontawesome-svg-core';
+import Head from 'next/head';
 import React, { Component } from 'react';
 import GraphQL from '../../util/graphql';
 import Header from './header';
@@ -16,6 +18,7 @@ class Layout extends Component {
                                 email
                                 avatar
                                 discriminator
+                                username
                             }
                         }
                     }
@@ -24,12 +27,19 @@ class Layout extends Component {
             if (res.data.user === null) {
                 localStorage.removeItem('token')
                 this.props.updateSession({ token: null, loggedIn: false, user: null })
+            } else {
+                this.props.updateSession({ token: localStorage.getItem('token'), loggedIn: true, user: res.data.user })
             }
         }
     }
     render() {
         return (
             <>
+            <Head>
+                <style>
+                    {dom.css()}
+                </style>
+            </Head>
                 <Header {...this.props} />
                 {this.props.children}
             </>

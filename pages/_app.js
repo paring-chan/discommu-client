@@ -4,11 +4,12 @@ import reducers from '../reducers'
 import {createWrapper} from 'next-redux-wrapper'
 import { createStore } from 'redux'
 import { connectToReducer } from '../util/redux'
+import '../util/fontawesome'
 
-function MyApp({ Component, pageProps, session, updateSession }) {
+function MyApp({ Component, pageProps, ...props }) {
   return (
-    <Layout {...{session,updateSession}}>
-      <Component {...pageProps} {...{session}} />
+    <Layout {...props}>
+      <Component {...pageProps} {...props} />
     </Layout>
   )
 }
