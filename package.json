@@ -8,8 +8,19 @@
     "start": "next start"
   },
   "dependencies": {
+    "@apollo/client": "^3.2.2",
+    "@primer/components": "^20.0.0",
+    "@primer/octicons-react": "^11.0.0",
+    "@xstate/react": "^1.0.1",
+    "graphql": "^15.3.0",
     "next": "9.5.3",
+    "next-redux-wrapper": "^6.0.2",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
-  }
+    "react-dom": "16.13.1",
+    "react-redux": "^7.2.1",
+    "redux": "^4.0.5",
+    "styled-components": "^5.2.0",
+    "xstate": "^4.13.0"
+  },
+  "devDependencies": {}
 }

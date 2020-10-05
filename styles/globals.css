@@ -14,3 +14,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.center {
+  width: 100%;
+  text-align: center;
+}
+
+main {
+  padding-top: 10px;
+}
