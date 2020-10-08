@@ -5,12 +5,19 @@ import {createWrapper} from 'next-redux-wrapper'
 import { createStore } from 'redux'
 import { connectToReducer } from '../util/redux'
 import '../util/fontawesome'
+import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
+import NextNProgress from 'nextjs-progressbar'
 
 function MyApp({ Component, pageProps, ...props }) {
+  const theme = createMuiTheme({})
   return (
-    <Layout {...props}>
+    <ThemeProvider theme={theme}>
+      <NextNProgress color="#fff"/>
+      <CssBaseline/>
+      <Layout {...props}>
       <Component {...pageProps} {...props} />
-    </Layout>
+      </Layout>
+    </ThemeProvider>
   )
 }
 

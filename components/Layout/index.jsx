@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import { dom } from '@fortawesome/fontawesome-svg-core';
+import { Toolbar } from '@material-ui/core';
 import Head from 'next/head';
 import React, { Component } from 'react';
 import GraphQL from '../../util/graphql';
@@ -11,7 +12,7 @@ class Layout extends Component {
         if (localStorage.getItem('token')) {
             const res = await client.query({
                 query: gql`
-                    query GetUser {
+                    query {
                         user {
                             profile {
                                 id
@@ -41,6 +42,7 @@ class Layout extends Component {
                 </style>
             </Head>
                 <Header {...this.props} />
+                <Toolbar/>
                 {this.props.children}
             </>
         );

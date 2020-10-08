@@ -1,4 +1,5 @@
-import { BorderBox, Button } from '@primer/components'
+import { BorderBox } from '@primer/components'
+import { Button } from '@material-ui/core'
 import Head from 'next/head'
 import Link from 'next/link'
 import { Component } from 'react'
@@ -30,7 +31,7 @@ class VerifyLogin extends Component {
             const client = GraphQL.getInstance()
             const res = await client.query({
                 query: gql`
-                    query GetUser {
+                    query {
                         user {
                             profile {
                                 id
@@ -60,18 +61,16 @@ class VerifyLogin extends Component {
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <main className="center">
-                    <StyledBox>
-                        <h2>로그인 처리중</h2>
-                        {this.props.message}
-                        {
-                            this.props.homeButton &&
-                            <Link href="/">
-                                <Button width="100%">
-                                    홈으로
+                    <h2>로그인 처리중</h2>
+                    {this.props.message}
+                    {
+                        this.props.homeButton &&
+                        <Link href="/">
+                            <Button width="100%">
+                                홈으로
                                 </Button>
-                            </Link>
-                        }
-                    </StyledBox>
+                        </Link>
+                    }
                 </main>
             </div>
         )
@@ -85,7 +84,7 @@ class VerifyLogin extends Component {
             },
             body: JSON.stringify({
                 query: `
-                query VerifyToken {
+                query {
                     user {
                         profile {
                             id
@@ -99,9 +98,9 @@ class VerifyLogin extends Component {
             })
         })).json()).data
         if (data.user === null) {
-            return {message: '토큰이 잘못되었습니다.', homeButton: true}
+            return { message: '토큰이 잘못되었습니다.', homeButton: true }
         } else {
-            return {message: '로그인이 완료되었습니다. 리다이렉트 중입니다..', token: ctx.query.token}
+            return { message: '로그인이 완료되었습니다. 리다이렉트 중입니다..', token: ctx.query.token }
         }
     }
 }
